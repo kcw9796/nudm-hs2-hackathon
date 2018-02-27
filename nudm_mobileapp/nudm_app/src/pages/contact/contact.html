@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title style="text-align: center;">SEARCH</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color:#f2f2f2;">
+  <div *ngIf="login; else logout_template">
+
+  <div *ngIf="volunteer; then vol_template else agency_template">
+  </div>
+
+  <ng-template #vol_template>
+  <ion-card *ngFor="let opportunity of opportunities">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/charity.png">
+      </ion-avatar>
+      <p>{{ opportunity.short_description }}</p>
+    </ion-item>
+
+    <ion-card-content>
+    <p>{{ opportunity.long_description }}</p>
+    <p>{{ opportunity.location_description }}</p>
+    <p>{{ opportunity.time_description }}</p>
+    <p>{{ opportunity.event_start_time }}</p>     
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="person-add"></ion-icon>
+          <div>Sign Up</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card> 
+
+  </ng-template>
+
+
+  <ng-template #agency_template>
+  <ion-card *ngFor="let person of volunteers">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="../../assets/imgs/kirk.jpg">
+      </ion-avatar>
+      <h2>{{ person.name }}</h2>
+      <p>{{ person.email }}</p>
+    </ion-item>
+
+    <ion-card-content>
+    <p>{{ person.phone_number }}</p>
+    <p>Skills:</p>
+    <ul style="list-style-type:square;margin:0;">
+      <li>Hard-working</li>
+      <li>Strong</li>
+      <li>Smart</li>
+    </ul>     
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="person-add"></ion-icon>
+          <div>Contact</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card> 
+
+  </ng-template>
+
+
+
+
+
+  </div>
+
+  <ng-template #logout_template>
+    <br>Please log in first
+  </ng-template>
+</ion-content>

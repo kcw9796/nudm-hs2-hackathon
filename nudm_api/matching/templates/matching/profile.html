@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div>
+	{% if Volunteers %}
+		{% for volunteer in Volunteers %}
+			<span>{{ volunteer.name }}</span>
+		{% endfor %}
+	{% else %}
+		<span>No volunteers</span>
+	{% endif %}
+	</div>
+</body>
+</html>

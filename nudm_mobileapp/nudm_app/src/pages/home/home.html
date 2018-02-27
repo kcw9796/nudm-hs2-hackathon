@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title style="text-align:center;">YOUR PROFILE</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+<div *ngIf="login; else login_template">
+	<ion-item *ngIf="volunteer; else agency_template">
+	<ion-card>
+	  <img src="../../assets/imgs/jennifer.jpg"/>
+	  <ion-card-content>
+	    <ion-card-title>
+	      {{ entity.name }}
+	      </ion-card-title>
+	    <p>
+	      {{ entity.email }} <br>
+	      {{ entity.phone_number }} <br>
+	    </p>
+	  </ion-card-content>
+	</ion-card>
+	</ion-item>
+
+	<ng-template #agency_template>
+		<ion-item>
+		<ion-card>
+		  <img src="../../assets/imgs/charity.png"/>
+		  <ion-card-content>
+		    <ion-card-title>
+		      {{ entity.name }}
+		      </ion-card-title>
+		    <p style="overflow-x:hidden;">
+		      {{ entity.email }} <br>
+		      {{ entity.phone_number }} <br>
+		      {{ entity.address }} <br>
+		      {{ entity.website_url }} <br> <br>
+		      Contact Name: {{ entity.contact_name }} <br>
+		      Office Hours: {{ entity.office_hours }} <br>
+		      About: {{ entity.about }} <br>
+		    </p>
+		  </ion-card-content>
+		</ion-card>
+		</ion-item>
+		<button ion-button block small style="margin-top: 10px;">Create New Opportunity</button>
+	</ng-template>	
+
+	<button ion-button block small style="margin: 10px 0px;">Edit info</button>
+	<button ion-button block small (click)='logout()'>Log out</button>
+</div>
+
+<ng-template #login_template>
+ <ion-list style="margin-top:20px;">
+  <ion-item>
+    <ion-label floating>Email</ion-label>
+    <ion-input type="text" (keyup)='onNameKeyUp($event)'></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+
+  </ion-list>
+  <div style="margin-top: 40px;">
+   	<button ion-button block (click)='getuser()'>Log in</button>
+   	<button ion-button block style="margin-top: 20px;">Sign up</button>
+  </div>
+</ng-template>
+
+</ion-content>
