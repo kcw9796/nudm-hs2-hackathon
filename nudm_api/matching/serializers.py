@@ -12,33 +12,23 @@ class AgenciesSerializer(serializers.HyperlinkedModelSerializer):
 		model = Agencies
 		fields = ('id','name','address','email','phone_number','office_hours','contact_name','about','website_url','created_at','updated_at')
 
-class OpportunitiesSerializer(serializers.HyperlinkedModelSerializer):
+class OpportunitiesSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Opportunities
 		fields = ('id','short_description','long_desription','location_description','time_description','event_start_time','volunteer_needed_count',
-			'can_signup_online','agency_id')
-
-class MatchSerializer(serializers.HyperlinkedModelSerializer):
-	class Meta:
-		model = VolunteerOpportunityAssociations
-		fields = ('id','opportunity_id','volunteer_id','date','created_at','updated_at')
+			'can_signup_online','agency')
+		depth = 1
 
 class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
 		fields = ('username', 'password', 'first_name', 'last_name', 'email',)
 
-class KeywordsSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Keywords
-		fields = ('id','description')
-
-class KeywordsMatchSerializer(serializers.ModelSerializer):
-	keyword = KeywordsSerializer(source='keyword_id')
-
+class KeywordAssociationsSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = KeywordAssociations
-		fields = ('id', 'keyword_id', 'keyword', 'agency_id', 'opportunity_id', 'volunteer_id', 'created_at', 'updated_at',)
+		fields = ('id','keyword')
+		depth = 1
 
 class VolunteerOpportunitySerializer(serializers.ModelSerializer):
 	class Meta:
@@ -50,4 +40,10 @@ class OpportunityVolunteerSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = VolunteerOpportunityAssociations
 		fields = ('id','volunteer')
+		depth = 1
+
+class AgencyOpportunitySerializer(serializers.ModelSerializer):
+	class Meta:
+		model = VolunteerOpportunityAssociations
+		fields = ('id','opportunity')
 		depth = 1

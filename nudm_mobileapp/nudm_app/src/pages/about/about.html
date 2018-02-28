@@ -5,40 +5,41 @@
 </ion-header>
 
 <ion-content style="background-color:#f2f2f2;">
-	<!-- <h2 style="text-align:center;color:green;">Matches</h2> -->
-	  
-	<ion-card *ngIf="volunteer; else agency_template">
+	
+	<div *ngIf="volunteer; else agency_template">
+	<ion-card *ngFor="let match of matches" id="{{ match.opportunity.id }}">
 	  <ion-item>
 	    <ion-avatar item-start>
 	      <img src="../../assets/imgs/charity.png">
 	    </ion-avatar>
-	    <p>Quia error omnis voluptas et expedita quasi adipisci.</p>
+	    <p>{{ match.opportunity.short_description }}</p>
 	  </ion-item>
 
 	  <ion-card-content>
-		<p>Odio sint velit deleniti qui eius cumque veniam. Natus animi veritatis. Similique vel ad. Cumque illo suscipit voluptatem architecto. Aspernatur maiores sint qui.</p>
-		<p>Et et laudantium minus aut eligendi totam in.</p>
-		<p>Ex optio cupiditate sint commodi ratione ipsam quidem debitis.</p>
-		<p>2018-03-31 13:56:57</p>	    
+		<p>{{ match.opportunity.long_description }}</p>
+	    <p>{{ match.opportunity.location_description }}</p>
+	    <p>{{ match.opportunity.time_description }}</p>
+	    <p>{{ match.opportunity.event_start_time }}</p>	    
 	  </ion-card-content>
 	  <ion-row>
 	    <ion-col>
-	      <button ion-button icon-left clear small>
+	      <button ion-button icon-left clear small (click)="remove_opp_card(match.opportunity.id)">
 	        <ion-icon name="remove-circle"></ion-icon>
 	        <div>Un-match</div>
 	      </button>
 	    </ion-col>
 	  </ion-row>
 	</ion-card>
+	</div>
 
 	<ng-template #agency_template>
-	<ion-card>
+	<ion-card *ngFor="let match of matches" id="{{ match.volunteer.id }}">
 	  <ion-item>
 	    <ion-avatar item-start>
 	      <img src="../../assets/imgs/kirk.jpg">
 	    </ion-avatar>
-	    <h2>Thea Ondricka</h2>
-	    <p>kaden@erdmanprosacco.co</p>
+	    <h2>{{ match.volunteer.name }}</h2>
+	    <p>{{ match.volunteer.email }}</p>
 	  </ion-item>
 
 	  <ion-card-content>
@@ -51,7 +52,7 @@
 	  </ion-card-content>
 	  <ion-row>
 	    <ion-col>
-	      <button ion-button icon-left clear small>
+	      <button ion-button icon-left clear small (click)="remove_vol_card(match.volunteer.id)">
 	        <ion-icon name="remove-circle"></ion-icon>
 	        <div>Un-match</div>
 	      </button>

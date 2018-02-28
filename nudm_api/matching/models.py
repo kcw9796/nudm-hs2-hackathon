@@ -147,20 +147,6 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class KeywordAssociations(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    keyword_id = models.IntegerField(blank=True, null=True)
-    agency_id = models.IntegerField(blank=True, null=True)
-    opportunity_id = models.IntegerField(blank=True, null=True)
-    volunteer_id = models.IntegerField(blank=True, null=True)
-    created_at = models.DateTimeField()
-    updated_at = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'keyword_associations'
-
-
 class Keywords(models.Model):
     id = models.BigAutoField(primary_key=True)
     created_at = models.DateTimeField()
@@ -172,6 +158,22 @@ class Keywords(models.Model):
         db_table = 'keywords'
 
 
+class KeywordAssociations(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    # keyword_id = models.IntegerField(blank=True, null=True)
+    keyword = models.ForeignKey(Keywords,on_delete=models.CASCADE)
+    agency_id = models.IntegerField(blank=True, null=True)
+    opportunity_id = models.IntegerField(blank=True, null=True)
+    volunteer_id = models.IntegerField(blank=True, null=True)
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'keyword_associations'
+
+
+
 class Opportunities(models.Model):
     id = models.BigAutoField(primary_key=True)
     short_description = models.CharField(max_length=255, blank=True, null=True)
@@ -181,7 +183,8 @@ class Opportunities(models.Model):
     event_start_time = models.DateTimeField(blank=True, null=True)
     volunteer_needed_count = models.IntegerField(blank=True, null=True)
     can_signup_online = models.IntegerField(blank=True, null=True)
-    agency_id = models.IntegerField(blank=True, null=True)
+    # agency_id = models.IntegerField(blank=True, null=True)
+    agency = models.ForeignKey(Agencies,on_delete=models.CASCADE)
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
 
@@ -233,8 +236,8 @@ class VolunteerOpportunityAssociations(models.Model):
     # volunteer_id = models.IntegerField(blank=True, null=True)
     volunteer = models.ForeignKey(Volunteers,on_delete=models.CASCADE)
     date = models.DateTimeField(blank=True, null=True)
-    created_at = models.DateTimeField()
-    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField(null=True, blank=True)
+    updated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         managed = False

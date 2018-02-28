@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
 
 
 /*
@@ -21,8 +22,10 @@ export class RemoteServiceProvider {
   	return this.http.get('http://localhost:8000/volunteers/');
   }
 
-  getOpportunities() {
-  	return this.http.get('http://localhost:8000/opportunities/');
+  getOpportunities(id) {
+    this.api_url = 'http://localhost:8000/opportunities?agency_id='+id;
+    console.log(this.api_url);
+  	return this.http.get(this.api_url);
   }
 
   getVolunteer(email) {
@@ -37,5 +40,23 @@ export class RemoteServiceProvider {
   	return this.http.get(this.api_url);
   }
 
+  getVolunteerOpportunity(id) {
+    this.api_url = 'http://localhost:8000/volunteer_opportunity?volunteer_id='+id;
+    console.log(this.api_url);
+    return this.http.get(this.api_url);
+  }
+
+  getOpportunityVolunteer(id) {
+    this.api_url = 'http://localhost:8000/opportunity_volunteer?opportunity_id='+id;
+    console.log(this.api_url);
+    return this.http.get(this.api_url);
+  }
+
+  signup_opportunity(opp_id,user_id) {
+    var date = new Date();
+    var obj = {'opportunity_id':opp_id,'volunteer_id':user_id,'date':date,'created_at':date,'updated_at':date};
+    console.log(obj);
+    this.http.post('http://localhost:8000/volunteer_opportunity',JSON.stringify(obj));
+  }
 
 }

@@ -9,7 +9,7 @@
   </div>
 
   <ng-template #vol_template>
-  <ion-card *ngFor="let opportunity of opportunities">
+  <ion-card *ngFor="let opportunity of opportunities" id="{{ opportunity.id }}">
     <ion-item>
       <ion-avatar item-start>
         <img src="../../assets/imgs/charity.png">
@@ -25,7 +25,7 @@
     </ion-card-content>
     <ion-row>
       <ion-col>
-        <button ion-button icon-left clear small>
+        <button ion-button icon-left clear small (click)="remove_opp_card(opportunity.id)">
           <ion-icon name="person-add"></ion-icon>
           <div>Sign Up</div>
         </button>
@@ -37,7 +37,7 @@
 
 
   <ng-template #agency_template>
-  <ion-card *ngFor="let person of volunteers">
+  <ion-card *ngFor="let person of volunteers" id="{{ person.id }}">
     <ion-item>
       <ion-avatar item-start>
         <img src="../../assets/imgs/kirk.jpg">
@@ -57,7 +57,7 @@
     </ion-card-content>
     <ion-row>
       <ion-col>
-        <button ion-button icon-left clear small>
+        <button ion-button icon-left clear small (click)="remove_vol_card(person.id)">
           <ion-icon name="person-add"></ion-icon>
           <div>Contact</div>
         </button>
