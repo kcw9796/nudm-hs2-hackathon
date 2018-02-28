@@ -8,10 +8,11 @@ import { NavController } from 'ionic-angular';
 export class AboutPage {
 
   volunteer:bool = false;
-  login:bool = false;
 
   constructor(public navCtrl: NavController) {
-
+  	if(localStorage.getItem("User_type") == "Volunteer") {
+      this.volunteer = true;
+    }
   }
 
 }

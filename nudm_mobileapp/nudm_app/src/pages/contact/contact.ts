@@ -12,16 +12,14 @@ export class ContactPage {
   volunteers: any[];
   opportunities: any[];
   volunteer:bool = false;
-  login:bool = false;
 
   constructor(public navCtrl: NavController, public api:RemoteServiceProvider) {
-    
+    if(localStorage.getItem("User_type") == "Volunteer") {
+      this.volunteer = true;
+    }
   }
 
   ionViewDidEnter() {
-    this.volunteer = this.api.getVolunteerBool();
-    this.login = this.api.getLoginBool();
-    console.log(this.volunteer);
     this.fill_data();
   }
   

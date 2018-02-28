@@ -6,7 +6,6 @@
 
 <ion-content padding>
 
-<div *ngIf="login; else login_template">
 	<ion-item *ngIf="volunteer; else agency_template">
 	<ion-card>
 	  <img src="../../assets/imgs/jennifer.jpg"/>
@@ -18,6 +17,9 @@
 	      {{ entity.email }} <br>
 	      {{ entity.phone_number }} <br>
 	    </p>
+	    <br>
+	    <p>Keywords: Magnesium, Cobalt, Selenium</p>
+	    <p>Number of sign ups: 4</p>
 	  </ion-card-content>
 	</ion-card>
 	</ion-item>
@@ -42,30 +44,10 @@
 		  </ion-card-content>
 		</ion-card>
 		</ion-item>
-		<button ion-button block small style="margin-top: 10px;">Create New Opportunity</button>
+		<button ion-button block style="margin-top: 10px;">Create New Opportunity</button>
 	</ng-template>	
 
-	<button ion-button block small style="margin: 10px 0px;">Edit info</button>
-	<button ion-button block small (click)='logout()'>Log out</button>
-</div>
-
-<ng-template #login_template>
- <ion-list style="margin-top:20px;">
-  <ion-item>
-    <ion-label floating>Email</ion-label>
-    <ion-input type="text" (keyup)='onNameKeyUp($event)'></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
-
-  </ion-list>
-  <div style="margin-top: 40px;">
-   	<button ion-button block (click)='getuser()'>Log in</button>
-   	<button ion-button block style="margin-top: 20px;">Sign up</button>
-  </div>
-</ng-template>
+	<button ion-button block style="margin: 10px 0px;">Edit info</button>
+	<button ion-button block (click)='logout()'>Log out</button>
 
 </ion-content>

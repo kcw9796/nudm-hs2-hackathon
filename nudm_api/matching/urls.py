@@ -19,6 +19,9 @@ urlpatterns = [
     url(r'^agencies/', views.AgencyView.as_view()),
     url(r'^opportunities/', views.OpportunityView.as_view()),
     url(r'^match/', views.MatchView.as_view()),
+    url(r'^keywords/', views.KeywordView.as_view()),
+    url(r'^volunteer_opportunity/', views.VolunteerOpportunityView.as_view()),
+    url(r'^opportunity_volunteer/', views.OpportunityVolunteerView.as_view()),
     # url(r'^volunteers/$', views.VolunteerList.as_view()),
     # url(r'^volunteers/(?P<pk>.+)/$', views.Volunteer.as_view()),
     

@@ -211,19 +211,6 @@ class VolunteerListings(models.Model):
         db_table = 'volunteer_listings'
 
 
-class VolunteerOpportunityAssociations(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    opportunity_id = models.IntegerField(blank=True, null=True)
-    volunteer_id = models.IntegerField(blank=True, null=True)
-    date = models.DateTimeField(blank=True, null=True)
-    created_at = models.DateTimeField()
-    updated_at = models.DateTimeField()
-
-    class Meta:
-        managed = False
-        db_table = 'volunteer_opportunity_associations'
-
-
 class Volunteers(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True, null=True)
@@ -237,3 +224,21 @@ class Volunteers(models.Model):
     class Meta:
         managed = False
         db_table = 'volunteers'
+
+
+class VolunteerOpportunityAssociations(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    # opportunity_id = models.IntegerField(blank=True, null=True)
+    opportunity = models.ForeignKey(Opportunities,on_delete=models.CASCADE)
+    # volunteer_id = models.IntegerField(blank=True, null=True)
+    volunteer = models.ForeignKey(Volunteers,on_delete=models.CASCADE)
+    date = models.DateTimeField(blank=True, null=True)
+    created_at = models.DateTimeField()
+    updated_at = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'volunteer_opportunity_associations'
+
+
+

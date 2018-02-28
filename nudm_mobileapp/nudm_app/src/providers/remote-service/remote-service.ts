@@ -11,8 +11,6 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class RemoteServiceProvider {
 
-  volunteer: bool = false;
-  login: bool = false;
   api_url: string = '';
 
   constructor(public http: HttpClient) {
@@ -39,30 +37,5 @@ export class RemoteServiceProvider {
   	return this.http.get(this.api_url);
   }
 
-  setVolunteerBool(b) {
-    if(b) {
-      this.volunteer = true;
-    }
-    else {
-      this.volunteer = false;
-    }
-  }
-
-  getVolunteerBool(b) {
-    return this.volunteer;
-  }
-
-  setLoginBool(b) {
-    if(b) {
-      this.login = true;
-    }
-    else {
-      this.login = false;
-    }
-  }
-
-  getLoginBool(b) {
-    return this.login;
-  }
 
 }

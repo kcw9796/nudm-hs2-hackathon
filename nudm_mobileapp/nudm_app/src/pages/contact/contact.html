@@ -5,8 +5,6 @@
 </ion-header>
 
 <ion-content style="background-color:#f2f2f2;">
-  <div *ngIf="login; else logout_template">
-
   <div *ngIf="volunteer; then vol_template else agency_template">
   </div>
 
@@ -50,11 +48,11 @@
 
     <ion-card-content>
     <p>{{ person.phone_number }}</p>
-    <p>Skills:</p>
+    <p>Keywords:</p>
     <ul style="list-style-type:square;margin:0;">
-      <li>Hard-working</li>
-      <li>Strong</li>
-      <li>Smart</li>
+      <li>Magnesium</li>
+      <li>Cobalt</li>
+      <li>Selenium</li>
     </ul>     
     </ion-card-content>
     <ion-row>
@@ -69,13 +67,4 @@
 
   </ng-template>
 
-
-
-
-
-  </div>
-
-  <ng-template #logout_template>
-    <br>Please log in first
-  </ng-template>
 </ion-content>

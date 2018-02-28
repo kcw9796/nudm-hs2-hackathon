@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Volunteers,Agencies,VolunteerOpportunityAssociations, Opportunities
+from .models import Volunteers,Agencies,VolunteerOpportunityAssociations, Opportunities, KeywordAssociations, Keywords, VolunteerOpportunityAssociations
 from django.contrib.auth.models import User, Group
 
 class VolunteersSerializer(serializers.HyperlinkedModelSerializer):
@@ -16,7 +16,7 @@ class OpportunitiesSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Opportunities
 		fields = ('id','short_description','long_desription','location_description','time_description','event_start_time','volunteer_needed_count',
-			'can_signup_online','agency_id','created_at','updated_at')
+			'can_signup_online','agency_id')
 
 class MatchSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
@@ -27,3 +27,27 @@ class UserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = User
 		fields = ('username', 'password', 'first_name', 'last_name', 'email',)
+
+class KeywordsSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Keywords
+		fields = ('id','description')
+
+class KeywordsMatchSerializer(serializers.ModelSerializer):
+	keyword = KeywordsSerializer(source='keyword_id')
+
+	class Meta:
+		model = KeywordAssociations
+		fields = ('id', 'keyword_id', 'keyword', 'agency_id', 'opportunity_id', 'volunteer_id', 'created_at', 'updated_at',)
+
+class VolunteerOpportunitySerializer(serializers.ModelSerializer):
+	class Meta:
+		model = VolunteerOpportunityAssociations
+		fields = ('id','opportunity')
+		depth = 1
+
+class OpportunityVolunteerSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = VolunteerOpportunityAssociations
+		fields = ('id','volunteer')
+		depth = 1

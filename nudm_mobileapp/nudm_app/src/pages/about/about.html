@@ -1,28 +1,52 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title style="text-align: center;">RECOMMENDATIONS</ion-title>
+    <ion-title style="text-align: center;">MATCHES</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content style="background-color:#f2f2f2;">
 	<!-- <h2 style="text-align:center;color:green;">Matches</h2> -->
 	  
-	<ion-card >
+	<ion-card *ngIf="volunteer; else agency_template">
+	  <ion-item>
+	    <ion-avatar item-start>
+	      <img src="../../assets/imgs/charity.png">
+	    </ion-avatar>
+	    <p>Quia error omnis voluptas et expedita quasi adipisci.</p>
+	  </ion-item>
 
+	  <ion-card-content>
+		<p>Odio sint velit deleniti qui eius cumque veniam. Natus animi veritatis. Similique vel ad. Cumque illo suscipit voluptatem architecto. Aspernatur maiores sint qui.</p>
+		<p>Et et laudantium minus aut eligendi totam in.</p>
+		<p>Ex optio cupiditate sint commodi ratione ipsam quidem debitis.</p>
+		<p>2018-03-31 13:56:57</p>	    
+	  </ion-card-content>
+	  <ion-row>
+	    <ion-col>
+	      <button ion-button icon-left clear small>
+	        <ion-icon name="remove-circle"></ion-icon>
+	        <div>Un-match</div>
+	      </button>
+	    </ion-col>
+	  </ion-row>
+	</ion-card>
+
+	<ng-template #agency_template>
+	<ion-card>
 	  <ion-item>
 	    <ion-avatar item-start>
 	      <img src="../../assets/imgs/kirk.jpg">
 	    </ion-avatar>
-	    <h2>Kirk Willens</h2>
-	    <p>kirkwillens@gmail.com</p>
+	    <h2>Thea Ondricka</h2>
+	    <p>kaden@erdmanprosacco.co</p>
 	  </ion-item>
 
 	  <ion-card-content>
-		<p>Skills:</p>
+		<p>Keywords:</p>
 		<ul style="list-style-type:square;margin:0;">
-			<li>Hard-working</li>
-			<li>Strong</li>
-			<li>Smart</li>
+			<li>Magnesium</li>
+			<li>Cobalt</li>
+			<li>Selenium</li>
 		</ul>	    
 	  </ion-card-content>
 	  <ion-row>
@@ -34,4 +58,6 @@
 	    </ion-col>
 	  </ion-row>
 	</ion-card>
+	</ng-template>
+
 </ion-content>
