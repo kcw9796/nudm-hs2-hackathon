@@ -54,9 +54,24 @@ export class RemoteServiceProvider {
 
   signup_opportunity(opp_id,user_id) {
     var date = new Date();
-    var obj = {'opportunity_id':opp_id,'volunteer_id':user_id,'date':date,'created_at':date,'updated_at':date};
-    console.log(obj);
-    this.http.post('http://localhost:8000/volunteer_opportunity',JSON.stringify(obj));
+    var obj = {'opportunity':opp_id,'volunteer':user_id};
+
+    this.http.post("http://localhost:8000/volunteer_opportunity",
+    {
+        "opportunity": opp_id,
+        "volunteer": user_id
+    })
+    .subscribe(
+        (val) => {
+            console.log("POST call successful value returned in body", 
+                        val);
+        },
+        response => {
+            console.log("POST call in error", response);
+        },
+        () => {
+            console.log("The POST observable is now completed.");
+        });
   }
 
 }

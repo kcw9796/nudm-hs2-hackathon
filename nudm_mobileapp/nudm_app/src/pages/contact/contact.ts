@@ -49,6 +49,7 @@ export class ContactPage {
 
   signup_opportunity(opportunity_id) {
     this.api.signup_opportunity(opportunity_id,this.id);
+    this.remove_opp_card(opportunity_id);
   }
 
   remove_opp_card(opportunity_id) {

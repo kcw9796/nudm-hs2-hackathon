@@ -33,8 +33,13 @@ class KeywordAssociationsSerializer(serializers.ModelSerializer):
 class VolunteerOpportunitySerializer(serializers.ModelSerializer):
 	class Meta:
 		model = VolunteerOpportunityAssociations
-		fields = ('id','opportunity')
+		fields = ('id','opportunity','volunteer_id')
 		depth = 1
+
+class VolunteerOpportunityWriteSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = VolunteerOpportunityAssociations
+		fields = ('id','opportunity','volunteer')
 
 class OpportunityVolunteerSerializer(serializers.ModelSerializer):
 	class Meta:
