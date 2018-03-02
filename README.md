@@ -2,7 +2,7 @@
 
 ## Participants:
 ```
-# Kirk Willens - Junior in Computer Engineering
-# Nick Kotsiantos - Junior in Computer Science
-# Andrew Bosset - Junior in Computer Sciecne
+Kirk Willens - Junior in Computer Engineering
+Nick Kotsiantos - Junior in Computer Science
+Andrew Bosset - Junior in Computer Sciecne
 ```
